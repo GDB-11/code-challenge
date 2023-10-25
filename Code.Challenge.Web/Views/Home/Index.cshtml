@@ -1,0 +1,71 @@
+﻿@model Code.Challenge.Web.Models.CalculateViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center pb-4">
+    <h1 class="display-4">Greetings, human</h1>
+</div>
+
+<div class="d-flex pb-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <p class="text-primary">If the number is divisible by <span class="text-danger">input1</span>, <span class="text-success">I'll show <strong>"yes"</strong>.</span></p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <p class="text-primary">If the number is divisible by <span class="text-danger">input2</span>, <span class="text-danger">I'll show <strong>"no"</strong>.</span></p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <p class="text-primary">If the number is divisible by both, <span class="text-info">I'll show <strong>"I don't know"</strong>.</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex">
+    <div class="container mx-auto">
+        <div class="custom-card">
+            <form method="post" id="frm-send" action="@Url.Action("Calculate")" autocomplete="off">
+                <div class="card bg-cream text-primary card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="input1" class="text-right">Input 1</label>
+                                @Html.TextBoxFor(x => x.FirstInput, new { @class = "form-control", @type = "number" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="input2" class="text-right">Input 2</label>
+                                @Html.TextBoxFor(x => x.SecondInput, new { @class = "form-control", @type = "number" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sampleSize" class="text-right">Sample Size</label>
+                                @Html.TextBoxFor(x => x.SampleSize, new { @class = "form-control", @type = "number" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center pt-4">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-block">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
