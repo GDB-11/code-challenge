@@ -42,14 +42,14 @@
                     </div>
                     <div class="row justify-content-center">
                         <div class="form-group">
-                            <label for="SecondInput" class="text-right">Input 2</label>
+                            <label for="SecondInput" class="text-right">Second Input:</label>
                             @Html.TextBoxFor(x => x.SecondInput, new { @class = "form-control", @type = "number", @data_val = "true", @data_val_required = "Input 2 is required", @required = "true" })
                             <span asp-validation-for="SecondInput" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="form-group">
-                            <label for="SampleSize" class="text-right">Sample Size</label>
+                            <label for="SampleSize" class="text-right">Sample Size:</label>
                             @Html.TextBoxFor(x => x.SampleSize, new { @class = "form-control", @type = "number", @data_val = "true", @data_val_required = "Sample Size is required", @required = "true" })
                             <span asp-validation-for="SampleSize" class="text-danger"></span>
                         </div>
