@@ -11,3 +11,9 @@
 /Application.Core.Logic/obj
 /Code.Challenge.Web/bin/Debug/net7.0
 /Code.Challenge.Web/obj
+/Application.Core.DTO/bin/Debug/net7.0
+/Application.Core.DTO/obj
+/Application.Core.Interface/bin/Debug/net7.0
+/Application.Core.Interface/obj
+/Application.Core.Logic.Test/bin/Debug/net7.0
+/Application.Core.Logic.Test/obj
