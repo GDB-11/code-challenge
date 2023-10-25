@@ -13,7 +13,6 @@ namespace Code.Challenge.Web.Models
         public int SecondInput { get; set; }
 
         [Required(ErrorMessage = "The sample size input is required.")]
-        [Va]
         public int SampleSize { get; set; }
 
         [Required(ErrorMessage = "The page input is required.")]
