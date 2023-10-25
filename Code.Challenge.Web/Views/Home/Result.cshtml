@@ -1,4 +1,42 @@
-﻿@{
+﻿@model Code.Challenge.Web.Models.ResultViewModel
 
+@{
+    ViewData["Title"] = "Results";
 }
 
+<div class="container">
+    <h1>Results</h1>
+
+    @if (Model.Results != null && Model.Results.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Value</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var result in Model.Results)
+                {
+                    <tr>
+                        <td>@result.Value</td>
+                        <td>@result.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model.Results, page => Url.Action("Result", "Home",
+        new { Page = page, Model.FirstInput, Model.SecondInput, Model.SampleSize }),
+        new PagedListRenderOptions {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+        })
+    }
+</div>
+
+@section Scripts {
+    <script>
+
+    </script>
+}

@@ -101,5 +101,47 @@ namespace Code.Challenge.Web.Controllers
             result.StatusCode = code;
             return result;
         }
+
+        public void PostMessage(FlashMessage Message)
+        {
+            if (TempData["FlashMessages"] == null)
+                TempData["FlashMessages"] = new List<FlashMessage>();
+
+            ((List<FlashMessage>)TempData["FlashMessages"]).Add(Message);
+        }
+
+        public void PostMessage(MessageType Type)
+        {
+            String Body = "";
+
+            switch (Type)
+            {
+                case MessageType.Error: Body = "An error occurred while processing the request."; break;
+                case MessageType.Info: Body = ""; break;
+                case MessageType.Success: Body = "The data was saved successfully."; break;
+                case MessageType.Warning: Body = ""; break;
+            }
+            PostMessage(Type, Body);
+        }
+
+        public void PostMessage(MessageType Type, String Title, String Body)
+        {
+            PostMessage(new FlashMessage { Title = Title, Body = Body, Type = Type });
+        }
+
+        public void PostMessage(MessageType Type, String Body)
+        {
+            String Title = "";
+
+            switch (Type)
+            {
+                case MessageType.Error: Title = "Error"; break;
+                case MessageType.Info: Title = "Info"; break;
+                case MessageType.Success: Title = "Success!"; break;
+                case MessageType.Warning: Title = "Attention!"; break;
+            }
+
+            PostMessage(new FlashMessage { Title = Title, Body = Body, Type = Type });
+        }
     }
 }

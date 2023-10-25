@@ -1,16 +1,23 @@
-﻿using Code.Challenge.Web.Models;
+﻿using Application.Core.DTO.Models;
+using Application.Core.DTO.Request;
+using Application.Core.Helpers;
+using Application.Core.Interface;
+using Code.Challenge.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using X.PagedList;
 
 namespace Code.Challenge.Web.Controllers
 {
     public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHome _home;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHome home)
         {
             _logger = logger;
+            _home = home;
         }
 
         public IActionResult Index()
@@ -30,30 +37,57 @@ namespace Code.Challenge.Web.Controllers
         }
 
         [HttpGet]
-        public async IActionResult Calculate(CalculateViewModel model)
+        public async Task<IActionResult> Calculate(CalculateViewModel model)
         {
             var result = default(IActionResult);
 
             try
             {
-                ValidateModel(model);
+                if (!ModelState.IsValid)
+                {
+                    PostMessage(MessageType.Error, "Please correct the errors in your input.");
 
-                ResultViewModel viewModel = new ResultViewModel();
+                    return RedirectToAction("Index");
+                }
 
-                _clienteBL.RegistrarCliente(dtoRequest);
-                _ = AddLogTraceAsync(dtoRequest, null, user);
-                result = View(viewModel);
+                ResultViewModel viewModel = new();
+                viewModel.FirstInput = model.FirstInput;
+                viewModel.SecondInput = model.SecondInput;
+                viewModel.SampleSize = model.SampleSize;
+
+                result = RedirectToAction("Result", viewModel);
             }
             catch (Exception ex)
             {
-                result = await ErrorResponseAsync(ex, null);
+                PostMessage(MessageType.Error, "Unexpected error.");
+
+                return RedirectToAction("Index");
             }
 
             return result;
         }
 
-        public IActionResult Result(ResultViewModel model)
+        [HttpGet]
+        public async Task<IActionResult> Result(ResultViewModel model)
         {
+            var result = default(IActionResult);
+
+            try
+            {
+                int page = model.page ?? 1;
+                int pageSize = 10;
+
+                CalculateRequest request = new(model.FirstInput, model.SecondInput, model.SampleSize);
+
+                model.Results = _home.Calculate(request).Results.ToPagedList(page, pageSize);
+            }
+            catch (Exception ex)
+            {
+                PostMessage(MessageType.Error, "Unexpected error.");
+
+                return RedirectToAction("Index");
+            }
+
             return View(model);
         }
     }

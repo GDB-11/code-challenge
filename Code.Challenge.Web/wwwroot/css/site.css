@@ -50,3 +50,91 @@ body {
         background-color: #145f69;
     }
 }
+
+.navbar {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #00ff00, #ff00ff);
+    background-size: 400% 400%;
+    animation: psychedelicBackground 10s ease infinite;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 24px;
+}
+
+.navbar-toggler {
+    background-color: #fff;
+}
+
+.navbar-collapse .navbar-nav .nav-link {
+    color: black;
+}
+
+@keyframes psychedelicBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+table.table {
+    background: linear-gradient(45deg, #FF00FF, #00FFFF, #FF00FF, #00FFFF);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s linear infinite;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    table.table th, table.table td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #fff;
+    }
+
+    table.table th {
+        background-color: #FFA07A; /* Light Salmon */
+        color: #333;
+    }
+
+    table.table tbody tr:nth-child(odd) {
+        animation: colorAnimation 2s infinite;
+    }
+
+    table.table tbody tr:nth-child(even) {
+        animation: colorAnimation 2s infinite;
+    }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes colorAnimation {
+    0% {
+        background-color: #7B68EE; /* MediumSlateBlue */
+    }
+
+    50% {
+        background-color: #20B2AA; /* LightSeaGreen */
+    }
+
+    100% {
+        background-color: #7B68EE; /* MediumSlateBlue */
+    }
+}

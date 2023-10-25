@@ -1,7 +1,12 @@
+using Application.Core.Interface;
+using Application.Core.Logic;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IHome, HomeBL>();
 
 var app = builder.Build();
 

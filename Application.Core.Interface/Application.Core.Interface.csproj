@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Core.Helpers\Application.Core.Helpers.csproj" />
-    <ProjectReference Include="..\Application.Core.Interface\Application.Core.Interface.csproj" />
+    <ProjectReference Include="..\Application.Core.DTO\Application.Core.DTO.csproj" />
   </ItemGroup>
 
 </Project>
